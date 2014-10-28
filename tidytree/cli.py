@@ -42,10 +42,4 @@ if __name__ == '__main__':
     if(not os.path.exists(folder)):
         warning("The folder '" + folder + "' doesn't exist")
         sys.exit(1);
-
-
-    tidy = TidyTree()
-    for i in files:
-        tidy.add(i)
-
-    print(tidy.toString())
+#print(tidy.toString())
