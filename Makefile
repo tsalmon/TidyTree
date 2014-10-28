@@ -1,4 +1,3 @@
-#make venv deps check
 .PHONY: all freeze check covercheck coverhtml
 
 SRC=tidytree
@@ -16,6 +15,12 @@ PY_VERSION_MAJOR:=$(word 1,$(PY_VERSION))
 PY_VERSION_MINOR:=$(word 2,$(PY_VERSION))
 PY_VERSION_SHORT:=$(PY_VERSION_MAJOR).$(PY_VERSION_MINOR)
 
+ifdef TRAVIS_PYTHON_VERSION
+PY_VERSION_SHORT:=$(TRAVIS_PYTHON_VERSION)
+REQS=travis-reqs.txt
+else
+REQS=requirements.txt
+endif
 
 deps:
 	$(BINPREFIX)pip install -r $(REQS)
