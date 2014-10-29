@@ -26,13 +26,6 @@ class TidyTree:
         else:
             self.letters[key].add(filename[1:])
 
-    def toString(self):
-        str = ""
-        for letter in self.letters:
-            print(letter)
-            str = str + " " + letter + "(" + self.letters[letter].toString() + ") \n"
-        return str
-
 #init FOLDER path and FILES collection
 if __name__ == '__main__':
     if(len(sys.argv) != 2):
