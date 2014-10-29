@@ -20,9 +20,14 @@ def getUniqueKey(dictio):
 
 class TidyTree:
 
-    def __init__(self, letter=None):
+    def __init__(self, letter=None, limit=0):
+        self.limit = limit
         self.letters = {}
-        if(letter != None and letter != ""):
+        if(isinstance(letter, list)):
+            for i in letter:
+                self.add(i)
+            self.optimize()
+        elif(letter != None and letter != ""):
             self.add(letter)
 
     def add(self, filename):
@@ -54,19 +59,13 @@ class TidyTree:
                 new_letters[letter] = l[letter]
         self.letters = new_letters
 
+    def jointure(self):
+        for letter in self.letters:
+            if(len(self.letters[letter].letters) > 5):
+                print("limite", letter)
+
     def toString(self):
         ret_str = ""
         for l in self.letters:
             ret_str = ret_str + l + "(" + self.letters[l].toString() + ")"
         return (ret_str)
-
-#init FOLDER path and FILES collection
-if __name__ == '__main__':
-    if(len(sys.argv) != 2):
-        warning("Need a folder name past in argument")
-        sys.exit(1);
-    folder=sys.argv[1]
-    if(not os.path.exists(folder)):
-        warning("The folder '" + folder + "' doesn't exist")
-        sys.exit(1);
-#print(tidy.toString())
