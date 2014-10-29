@@ -55,8 +55,7 @@ class TestTidyClass(unittest.TestCase):
         for i in range(1, 10):
             files += ["cli_p" + str(i) + ".py"]
         tidy = TidyTree(files)
-        print(tidy.toString())
-        #tidy.jointure()
+        tidy.jointure()
 
     def test_getFiles(self):
         files = ["azertylol", "azertymdr", "qwerty", "abc"]
