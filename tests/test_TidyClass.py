@@ -33,7 +33,6 @@ class TestTidyClass(unittest.TestCase):
             self.assertEquals(tidy1, None)
             self.assertEquals(tidy2, None)
 
-
     def test_optimize(self):
         test_opti = TidyTree()
         test_opti.letters["a"] = TidyTree()
@@ -51,10 +50,25 @@ class TestTidyClass(unittest.TestCase):
 
         self.test_EqualsTidy(test_opti, tidy)
 
-    def test_getCommonEnd(self):
+    def test_jointure(self):
         files = []
         for i in range(1, 10):
             files += ["cli_p" + str(i) + ".py"]
         tidy = TidyTree(files)
         print(tidy.toString())
         #tidy.jointure()
+
+    def test_getFiles(self):
+        files = ["azertylol", "azertymdr", "qwerty", "abc"]
+
+        test_opti = TidyTree()
+        test_opti.letters["a"] = TidyTree()
+        test_opti.letters["a"].letters["zerty"] = TidyTree()
+        test_opti.letters["a"].letters["zerty"].letters["lol"] = TidyTree()
+        test_opti.letters["a"].letters["zerty"].letters["mdr"] = TidyTree()
+        test_opti.letters["a"].letters["bc"] = TidyTree()
+        test_opti.letters["qwerty"] = TidyTree()
+
+        test_files = test_opti.getFiles();
+
+        self.assertEquals(sorted(test_files), sorted(files))
