@@ -33,25 +33,6 @@ class TestTidyClass(unittest.TestCase):
             self.assertEquals(tidy1, None)
             self.assertEquals(tidy2, None)
 
-    def test_getListOfFile(self):
-        folder = getListofFiles(".")
-        tidy1 = TidyTree()
-        for i in folder:
-            tidy1.add(i)
-
-        test_folder = ['.coverage',
-                        '.git',
-                        '.gitignore',
-                        'Makefile',
-                        'requirements.txt',
-                        'tests',
-                        'tidytree',
-                        'venv']
-        tidy2 = TidyTree()
-        for j in test_folder:
-            tidy2.add(j)
-        self.test_EqualsTidy(tidy1, tidy2)
-
 
     def test_optimize(self):
         test_opti = TidyTree()
@@ -69,3 +50,11 @@ class TestTidyClass(unittest.TestCase):
         tidy.optimize()
 
         self.test_EqualsTidy(test_opti, tidy)
+
+    def test_getCommonEnd(self):
+        files = []
+        for i in range(1, 10):
+            files += ["cli_p" + str(i) + ".py"]
+        tidy = TidyTree(files)
+        print(tidy.toString())
+        #tidy.jointure()
