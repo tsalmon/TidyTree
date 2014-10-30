@@ -51,11 +51,17 @@ class TestTidyClass(unittest.TestCase):
         self.test_EqualsTidy(test_opti, tidy)
 
     def test_jointure(self):
+        if not os.path.exists("local_test"):
+            os.makedirs("local_test")
         files = []
         for i in range(1, 10):
             files += ["cli_p" + str(i) + ".py"]
+            open('local_test/cli_p'+str(i)+'.py', 'w').close()
         tidy = TidyTree(files)
         tidy.jointure()
+        for i in range(1, 10):
+            os.remove("local_test/cli_p/cli_p"+str(i)+".py")
+
 
     def test_getFiles(self):
         files = ["azertylol", "azertymdr", "qwerty", "abc"]
