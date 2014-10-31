@@ -97,3 +97,15 @@ class TidyTree:
         for l in self.letters:
             ret_str = ret_str + l + "(" + self.letters[l].toString() + ")"
         return (ret_str)
+
+def main():
+    if(len(sys.argv) != 3):
+        warning("Need a folder name past and a limit as arguments")
+        sys.exit(1);
+    folder=sys.argv[1]
+    if(not os.path.exists(folder)):
+        warning("The folder '" + folder + "' doesn't exist")
+        sys.exit(1);
+
+    tidy = TidyTree(folder, int(sys.argv[2]))
+    tidy.jointure()
